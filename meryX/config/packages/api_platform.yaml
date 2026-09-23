@@ -1,0 +1,13 @@
+api_platform:
+    # allow_plain_identifiers : true
+
+    title: Hello API Platform
+    version: 1.0.0
+    eager_loading:
+        # Temporary safety net while the University serialization graph is being reduced.
+        # This is not the final fix: the structural fix is the lightweight read groups above.
+        max_joins: 60
+    defaults:
+        stateless: true
+        cache_headers:
+            vary: ['Content-Type', 'Authorization', 'Origin']

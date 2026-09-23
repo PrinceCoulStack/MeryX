@@ -1,0 +1,27 @@
+# see https://symfony.com/doc/current/reference/configuration/framework.html
+framework:
+    secret: '%env(APP_SECRET)%'
+    http_method_override: true
+    session:
+        cookie_secure: auto
+        cookie_samesite: strict
+        handler_id: null
+        storage_factory_id: session.storage.factory.native
+    trusted_proxies: '127.0.0.1,REMOTE_ADDR'
+    trusted_headers: [ 'x-forwarded-for', 'x-forwarded-host', 'x-forwarded-proto', 'x-forwarded-port' ]
+
+when@prod:
+    framework:
+        session:
+            cookie_secure: true
+            cookie_samesite: strict
+        http_client:
+            default_options:
+                verify_host: true
+                verify_peer: true
+
+when@test:
+    framework:
+        test: true
+        session:
+            storage_factory_id: session.storage.factory.mock_file

@@ -1,0 +1,54 @@
+# =========================
+# Symfony Backend
+# =========================
+
+meryX/.env
+meryX/.env.local
+meryX/.env.*.local
+
+meryX/var/
+meryX/vendor/
+
+# Symfony cache and logs
+meryX/var/cache/
+meryX/var/log/
+
+# JWT keys
+meryX/config/jwt/private.pem
+meryX/config/jwt/public.pem
+
+
+# =========================
+# Vue Frontend
+# =========================
+
+meryx_front/node_modules/
+meryx_front/dist/
+
+meryx_front/.env
+meryx_front/.env.local
+meryx_front/.env.*.local
+
+
+# =========================
+# IDE
+# =========================
+
+.vscode/
+.idea/
+
+
+# =========================
+# Operating System
+# =========================
+
+.DS_Store
+Thumbs.db
+
+
+# =========================
+# Logs
+# =========================
+
+*.log
+npm-debug.log*

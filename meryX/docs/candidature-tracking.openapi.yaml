@@ -1,0 +1,223 @@
+openapi: 3.0.3
+info:
+  title: Candidature Tracking API
+  version: 1.0.0
+  description: Endpoints for applying to opportunities, tracking statuses, and managing saved opportunities.
+servers:
+  - url: /api
+security:
+  - bearerAuth: []
+paths:
+  /candidatures:
+    get:
+      summary: List candidatures
+      parameters:
+        - in: query
+          name: studentId
+          schema:
+            type: string
+        - in: query
+          name: status
+          schema:
+            type: string
+            enum: [applied, interview, offer, accepted, rejected]
+        - in: query
+          name: opportunityId
+          schema:
+            type: string
+        - in: query
+          name: createdAfter
+          schema:
+            type: string
+            format: date-time
+        - in: query
+          name: createdBefore
+          schema:
+            type: string
+            format: date-time
+        - in: query
+          name: sortBy
+          schema:
+            type: string
+            enum: [appliedDate, lastUpdated, score]
+        - in: query
+          name: order
+          schema:
+            type: string
+            enum: [ASC, DESC]
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 1
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+      responses:
+        '200':
+          description: Hydra collection of candidatures
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    post:
+      summary: Create candidature
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [opportunityId, studentId]
+              properties:
+                opportunityId:
+                  type: string
+                studentId:
+                  type: string
+                notes:
+                  type: string
+      responses:
+        '201':
+          description: Created
+        '400':
+          description: Validation error
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '409':
+          description: Duplicate candidature
+  /candidatures/{id}:
+    patch:
+      summary: Update candidature status
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [applied, interview, offer, accepted, rejected]
+                feedback:
+                  type: string
+                  nullable: true
+                notes:
+                  type: string
+                  nullable: true
+                interviewDate:
+                  type: string
+                  format: date-time
+                  nullable: true
+      responses:
+        '200':
+          description: Updated
+        '400':
+          description: Invalid status transition or payload
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+  /savedOpportunities:
+    get:
+      summary: List saved opportunities
+      parameters:
+        - in: query
+          name: studentId
+          schema:
+            type: string
+        - in: query
+          name: savedAfter
+          schema:
+            type: string
+            format: date-time
+        - in: query
+          name: savedBefore
+          schema:
+            type: string
+            format: date-time
+        - in: query
+          name: search
+          schema:
+            type: string
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 1
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+      responses:
+        '200':
+          description: Hydra collection
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+    post:
+      summary: Save opportunity (idempotent)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [opportunityId, studentId]
+              properties:
+                opportunityId:
+                  type: string
+                studentId:
+                  type: string
+                notes:
+                  type: string
+      responses:
+        '200':
+          description: Existing saved record returned
+        '201':
+          description: New record created
+        '400':
+          description: Validation error
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+  /savedOpportunities/{id}:
+    delete:
+      summary: Delete saved opportunity
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Deleted
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden
+        '404':
+          description: Not found
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

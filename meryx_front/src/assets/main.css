@@ -1,0 +1,335 @@
+@import './base.css';
+
+:root {
+  color-scheme: light;
+  --meryx-dark: #0d2b45;
+  --meryx-surface: #114a6a;
+  --meryx-surface-alt: #1e3f66;
+  --meryx-gold: #d4a017;
+  --meryx-light: #f2f4f7;
+  --meryx-white: #f8fbff;
+  --meryx-muted: rgba(242, 244, 247, 0.78);
+
+  --bg: #f2f4f7;
+  --surface: #ffffff;
+  --surface-soft: #e8edf3;
+  --text: #0d2b45;
+  --muted: rgba(13, 43, 69, 0.72);
+  --border: rgba(17, 74, 106, 0.22);
+  --primary: var(--meryx-gold);
+  --secondary: #1e3f66;
+  --accent: var(--meryx-gold);
+  --heading: #0d2b45;
+  --focus-ring: rgba(212, 160, 23, 0.42);
+  --shadow-soft: 0 10px 24px rgba(13, 43, 69, 0.12);
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 18px;
+}
+
+body.theme-dark {
+  color-scheme: dark;
+  --bg: #0b243a;
+  --surface: #103f5b;
+  --surface-soft: #163758;
+  --text: #f2f4f7;
+  --muted: rgba(242, 244, 247, 0.82);
+  --border: rgba(242, 244, 247, 0.2);
+  --primary: #d4a017;
+  --secondary: #b9d5ee;
+  --accent: #d4a017;
+  --heading: #f2f4f7;
+  --focus-ring: rgba(212, 160, 23, 0.48);
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.55;
+}
+
+#app {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-weight: normal;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary);
+  transition: color 0.2s ease;
+}
+
+@media (hover: hover) {
+  a:hover {
+    color: #ebbd45;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid #d4a017;
+  outline-offset: 2px;
+}
+
+* {
+  scrollbar-color: rgba(158, 192, 222, 0.45) rgba(13, 43, 69, 0.85);
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(158, 192, 222, 0.35);
+  border-radius: 999px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(13, 43, 69, 0.75);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--heading);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+p,
+label,
+small,
+li,
+span,
+td,
+th {
+  color: var(--text);
+}
+
+button,
+.primary-btn,
+.secondary-btn,
+.ghost-btn,
+.btn,
+.action-button,
+.topbar-action-btn,
+.text-btn {
+  font-family: 'Plus Jakarta Sans', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+button:not(:disabled),
+.primary-btn:not(:disabled),
+.secondary-btn:not(:disabled),
+.ghost-btn:not(:disabled),
+.btn:not(:disabled),
+.action-button:not(:disabled),
+.topbar-action-btn:not(:disabled),
+.text-btn:not(:disabled) {
+  cursor: pointer;
+}
+
+button:disabled,
+.primary-btn:disabled,
+.secondary-btn:disabled,
+.ghost-btn:disabled,
+.btn:disabled,
+.action-button:disabled,
+.topbar-action-btn:disabled,
+.text-btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.primary-btn,
+.btn,
+button.primary,
+.action-button.primary {
+  background: var(--meryx-gold);
+  color: var(--meryx-dark) !important;
+  border-color: #e1b649;
+  font-weight: 700;
+  box-shadow: 0 8px 24px rgba(212, 160, 23, 0.28);
+}
+
+.primary-btn:hover,
+.btn:hover,
+button.primary:hover,
+.action-button.primary:hover {
+  background: #e1b649;
+  transform: translateY(-1px);
+}
+
+.secondary-btn,
+.ghost-btn,
+.topbar-action-btn,
+.action-button,
+button.secondary {
+  background: rgba(30, 63, 102, 0.86);
+  color: var(--meryx-white) !important;
+  border-color: rgba(212, 160, 23, 0.4);
+  font-weight: 600;
+}
+
+.secondary-btn:hover,
+.ghost-btn:hover,
+.topbar-action-btn:hover,
+.action-button:hover,
+button.secondary:hover {
+  background: rgba(40, 76, 119, 0.95);
+  border-color: var(--meryx-gold);
+}
+
+.text-btn {
+  background: transparent;
+  color: #b9d5ee !important;
+  border-color: rgba(185, 213, 238, 0.28);
+}
+
+.text-btn:hover {
+  color: var(--meryx-gold) !important;
+  border-color: rgba(212, 160, 23, 0.5);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: rgba(13, 43, 69, 0.78);
+  color: var(--meryx-white);
+  padding: 11px 13px;
+  font-size: 0.95rem;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(242, 244, 247, 0.56);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--meryx-gold);
+  box-shadow: 0 0 0 3px rgba(212, 160, 23, 0.24);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: transparent;
+}
+
+thead th {
+  background: rgba(13, 43, 69, 0.7);
+  color: #d7e6f5;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
+
+th,
+td {
+  padding: 14px 12px;
+  border-bottom: 1px solid rgba(242, 244, 247, 0.12);
+}
+
+tbody tr {
+  background: rgba(17, 74, 106, 0.35);
+}
+
+tbody tr:hover {
+  background: rgba(30, 63, 102, 0.8);
+}
+
+.card,
+.panel,
+.panel-card,
+.hero-card,
+.toolbar-card,
+.records-card,
+.summary-card,
+.metric-card,
+.quick-stat,
+.desktop-table-card,
+.mobile-student-card {
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  background: var(--surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.status-chip,
+.status-pill,
+.badge,
+.agenda-pill,
+.panel-tag {
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.status-chip.active,
+.status-pill.onTrack {
+  background: rgba(34, 197, 94, 0.18);
+  color: #8af0b0;
+}
+
+.status-chip.inactive,
+.status-pill.probation {
+  background: rgba(148, 163, 184, 0.22);
+  color: #cfdae4;
+}
+
+.status-chip.graduated,
+.status-pill.needsAttention {
+  background: rgba(212, 160, 23, 0.2);
+  color: #f2d277;
+}
+
+.overlay {
+  backdrop-filter: blur(4px);
+}
+
+.dropdown-menu,
+[role='menu'] {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+}
+
+.loading,
+[aria-busy='true'] {
+  opacity: 0.72;
+}
+
+@media (max-width: 900px) {
+  h1 {
+    font-size: 1.55rem;
+  }
+
+  h2 {
+    font-size: 1.35rem;
+  }
+
+  .content,
+  main {
+    overflow-x: clip;
+  }
+}

@@ -1,0 +1,47 @@
+export const companyActualities = [
+  {
+    id: 1,
+    companyId: 1,
+    companyName: 'Acme Corp',
+    author: 'Acme Communications',
+    title: 'Open Day For Engineering Students',
+    content:
+      'Acme Corp will host an open day next Friday to present our internship tracks and mentorship program for final-year students.',
+    category: 'Event',
+    visibility: 'Public',
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d',
+    postedAt: '2026-08-03T10:30:00.000Z',
+    likes: 42,
+    comments: 9,
+  },
+  {
+    id: 2,
+    companyId: 2,
+    companyName: 'MaliTech Solutions',
+    author: 'MaliTech HR Team',
+    title: 'Backend Trainee Intake September 2026',
+    content:
+      'We are accepting applications for backend trainee roles focused on APIs, security practices, and cloud basics.',
+    category: 'Recruitment',
+    visibility: 'Public',
+    image: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085',
+    postedAt: '2026-08-06T09:10:00.000Z',
+    likes: 57,
+    comments: 16,
+  },
+  {
+    id: 3,
+    companyId: 3,
+    companyName: 'FinBridge',
+    author: 'FinBridge Academy',
+    title: 'Data Reporting Webinar Replay Available',
+    content:
+      'The webinar replay and slides are now available for students preparing for analytics internship interviews.',
+    category: 'Announcement',
+    visibility: 'Public',
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3',
+    postedAt: '2026-08-08T14:05:00.000Z',
+    likes: 31,
+    comments: 4,
+  },
+]

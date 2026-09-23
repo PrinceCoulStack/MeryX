@@ -1,0 +1,5 @@
+artprima_prometheus_metrics:
+    namespace: app # Le préfixe de vos métriques
+    storage: in_memory  # Utilisez 'redis' ou 'apcu' en production
+    # type: prometheus
+    
