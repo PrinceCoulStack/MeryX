@@ -5,6 +5,8 @@ RUN apt-get update && apt-get install -y libicu-dev libzip-dev unzip git && dock
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 WORKDIR /var/www/html
 
+RUN touch .env
+
 COPY composer.json composer.lock ./
 RUN composer install --no-dev --no-scripts --optimize-autoloader --no-interaction --prefer-dist
 
