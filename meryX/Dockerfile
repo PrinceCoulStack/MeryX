@@ -14,13 +14,15 @@ COPY apache.conf /etc/apache2/conf-available/symfony.conf
 RUN a2enconf symfony
 
 RUN mkdir -p var/cache var/log var/share && chown -R www-data:www-data var
-RUN composer run-script post-install-cmd --no-interaction
 
 RUN sed -ri -e 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
 
 ENV APP_ENV=prod
 ENV APP_DEBUG=0
 
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint
+RUN chmod +x /usr/local/bin/docker-entrypoint
+
 EXPOSE 80
 
-CMD ["apache2-foreground"]
+ENTRYPOINT ["docker-entrypoint"]
